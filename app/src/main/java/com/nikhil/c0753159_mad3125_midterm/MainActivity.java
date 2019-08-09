@@ -14,12 +14,16 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    ArrayList<UserData> arrayList = new ArrayList<>();
 
     EditText userEmail,userPassword;
     Button btnLogin;
     SharedPreferences msharedPreferences;
     CheckBox rememberMe;
+    UserData u1 = new UserData("nikhil@gmail.com","1234");
+    UserData u2 = new UserData("kishore@gmail.com","1234");
+    UserData u3 = new UserData("nikhil1@gmail.com","1234");
+    UserData[] login = {u1,u2,u3};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,9 +33,6 @@ public class MainActivity extends AppCompatActivity {
         //startActivity(new Intent(packegeContext:splashScreen.this,MainActivity.class));
         //  },delayMilles(3000);
 
-        arrayList.add(new UserData("nikhil@gmail.com","1234"));
-        arrayList.add(new UserData("kishore@gmail.com","1234"));
-        arrayList.add(new UserData("tarlochan@gmail.com","1234"));
 
 
 
@@ -64,9 +65,10 @@ public class MainActivity extends AppCompatActivity {
         String password = userPassword.getText().toString();
 
         // for error.....
-       if (email.isEmpty() || email.trim().length() == 0 ) {
+       if (email.isEmpty() || email.trim().length() == 0 || password.isEmpty()||password.trim().length()==0 ) {
 
          userEmail.setError("Enter Email ID");
+         userPassword.setError("EnterPassword");
       }
 
         if (email.equals("Nikhil@gmail.com") && password.equals("1234")) {
@@ -86,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-            //Toast.makeText(getApplicationContext(), "Logged In", Toast.LENGTH_SHORT).show();
+
             Intent i = new Intent(getApplicationContext(),HomeActivity.class);
             i.putExtra("email",email);
 
