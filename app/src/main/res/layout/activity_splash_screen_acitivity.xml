@@ -18,7 +18,17 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/imageView"
         android:textSize="20dp"
+        android:textStyle="bold"
         android:text="Welcome Nikhil" />
+    <TextView
+        android:id="@+id/text1"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:text="C0753159" />
 
 
 </RelativeLayout>
