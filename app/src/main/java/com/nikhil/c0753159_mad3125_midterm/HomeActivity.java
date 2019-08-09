@@ -2,6 +2,7 @@ package com.nikhil.c0753159_mad3125_midterm;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -9,6 +10,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,12 +22,13 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.List;
 
-public class HomeActivity extends AppCompatActivity
-{
+public class HomeActivity extends AppCompatActivity {
     String key = "";
     String value = "";
     public MyListData[] myListData;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,13 +41,10 @@ public class HomeActivity extends AppCompatActivity
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        if(userJson != null)
-        {
-            try
-            {
+        if (userJson != null) {
+            try {
                 JSONArray mJSONArray = new JSONArray(userJson);
-                for (int i = 0; i < mJSONArray.length(); i++)
-                {
+                for (int i = 0; i < mJSONArray.length(); i++) {
                     JSONObject mObject = mJSONArray.getJSONObject(i);
                     System.out.println("----------------");
                     System.out.println(mObject.get("mission_name"));
@@ -59,16 +59,14 @@ public class HomeActivity extends AppCompatActivity
                     MyListData.DataList.add(myListData2);
                     Log.d("DATA", mObject.toString());
                 }
-                myListData = MyListData.DataList.toArray(new MyListData [MyListData.DataList.size()]);
+                myListData = MyListData.DataList.toArray(new MyListData[MyListData.DataList.size()]);
 
 //                myListData = MyListData.DataList.toArray();
 
                 System.out.println(
                         MyListData.DataList
                 );
-            }
-            catch (JSONException e)
-            {
+            } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
@@ -80,6 +78,7 @@ public class HomeActivity extends AppCompatActivity
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
     }
+
     public String loadJSONFromAsset() throws JSONException {
         String json;
         try {
@@ -97,8 +96,7 @@ public class HomeActivity extends AppCompatActivity
         return json;
 
 
-
 //
     }
-
 }
+
