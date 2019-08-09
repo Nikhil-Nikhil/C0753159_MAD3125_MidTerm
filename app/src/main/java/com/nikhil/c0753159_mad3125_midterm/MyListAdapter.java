@@ -1,5 +1,6 @@
 package com.nikhil.c0753159_mad3125_midterm;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +34,8 @@ final MyListData myListData = listdata[position];
         holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
 @Override
 public void onClick(View view) {
-        Toast.makeText(view.getContext(),"click on item: "+myListData.getDescription(),Toast.LENGTH_LONG).show();
+        Intent intent = new Intent (view.getContext(),ViewActivity.class);
+        view.getContext().startActivity(intent);
         }
         });
         }
