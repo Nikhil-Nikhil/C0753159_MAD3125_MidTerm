@@ -6,10 +6,19 @@ public class SatData {
     String upcoming;
     String launch_year;
     String launch_window;
+
+
+
+    String flightimage;
+    String flightName;
+    String flightYear;
     Rdata rocket;
     Launch launchSite;
     Weblinks links;
+
+
     String details;
+    FlightDetail Flight;
 
     public SatData() {
     }
@@ -97,6 +106,48 @@ public class SatData {
     public void setDetails(String details) {
         this.details = details;
     }
+    public SatData(FlightDetail flight) {
+        Flight = flight;
+    }
+
+    public String getFlightimage() {
+        return flightimage;
+    }
+
+    public void setFlightimage(String flightimage) {
+        this.flightimage = flightimage;
+    }
+
+    public String getFlightName() {
+        return flightName;
+    }
+
+    public void setFlightName(String flightName) {
+        this.flightName = flightName;
+    }
+
+    public String getFlightYear() {
+        return flightYear;
+    }
+
+    public void setFlightYear(String flightYear) {
+        this.flightYear = flightYear;
+    }
+
+    public FlightDetail getFlight() {
+        return Flight;
+    }
+
+    public void setFlight(FlightDetail flight) {
+        Flight = flight;
+    }
+
+    public SatData(String flightimage, String flightName, String flightYear) {
+        this.flightimage = flightimage;
+        this.flightName = flightName;
+        this.flightYear = flightYear;
+    }
+
     public void display(){
         System.out.println("FlightNumber"+this.getFlight_number()+"\nMissionName"+this.mission_name+"\n Launch Year"+this.launch_year);
     }

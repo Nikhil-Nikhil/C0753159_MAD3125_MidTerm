@@ -1,5 +1,6 @@
 package com.nikhil.c0753159_mad3125_midterm;
 
+import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,19 +13,30 @@ import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+
+import java.util.List;
+
 
 // RecyclerView recyclerView;
 public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder>{
 
-    private MyListData[] listdata;
+    private Context mContext;
+    private List<SatData> listdata;
+    RequestOptions option;
+
+    public MyListAdapter(Context mContext, List<SatData> listdata) {
+        this.mContext = mContext;
+        this.listdata = listdata;
+        option = new RequestOptions().centerCrop().placeholder(R.drawable.border).error(R.drawable.border);
+    }
 
     // RecyclerView recyclerView;
-    public MyListAdapter(MyListData[] listdata) {
-        this.listdata = listdata;
-    }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+        LayoutInflater layoutInflater = LayoutInflater.from(mContext);
         View listItem= layoutInflater.inflate(R.layout.list_items, parent, false);
         ViewHolder viewHolder = new ViewHolder(listItem);
         return viewHolder;
@@ -32,8 +44,9 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        final MyListData myListData = listdata[position];
-        holder.textView.setText(listdata[position].getDescription());
+        holder.MissionName.setText(listdata.get(position).getMission_name());
+        holder.year.setText(listdata.get(position).getLaunch_year());
+        Glide.with(mContext.load(listdata.get(position).getFlightimage()).apply(option).into(holder.FlightImage));
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -47,16 +60,21 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
-        return listdata.length;
+        return listdata.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView textView;
-        public LinearLayout linearLayout;
+        TextView MissionName;
+         TextView year;
+         LinearLayout linearLayout;
+         ImageView  FlightImage;
         public ViewHolder(View itemView) {
             super(itemView);
-            this.textView = (TextView) itemView.findViewById(R.id.MissionName);
+            MissionName = (TextView) itemView.findViewById(R.id.MissionName);
+            year = (TextView) itemView.findViewById(R.id.year);
+            FlightImage = itemView.findViewById(R.id.imageView);
             linearLayout = (LinearLayout)itemView.findViewById(R.id.LinearLayout);
+
         }
     }
 }

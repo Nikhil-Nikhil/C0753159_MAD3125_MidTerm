@@ -48,8 +48,9 @@ public class HomeActivity extends AppCompatActivity
                     JSONObject mObject = mJSONArray.getJSONObject(i);
                     System.out.println("----------------");
                     System.out.println(mObject.get("mission_name"));
-
+                    System.out.println(mObject.get("launch_year"));
                     value = mObject.get("mission_name").toString();
+                    key = mObject.get("launch_year").toString();
 
                     MyListData myListData1 = new MyListData(value);
 
@@ -69,20 +70,7 @@ public class HomeActivity extends AppCompatActivity
                 e.printStackTrace();
             }
         }
-//        MyListData[] myListData = new MyListData[] {
-//                new MyListData(value, android.R.drawable.ic_dialog_email),
-//                new MyListData("Info", android.R.drawable.ic_dialog_info),
-//                new MyListData("Delete", android.R.drawable.ic_delete),
-//                new MyListData("Dialer", android.R.drawable.ic_dialog_dialer),
-//                new MyListData("Alert", android.R.drawable.ic_dialog_alert),
-//                new MyListData("Map", android.R.drawable.ic_dialog_map),
-//                new MyListData("Email", android.R.drawable.ic_dialog_email),
-//                new MyListData("Info", android.R.drawable.ic_dialog_info),
-//                new MyListData("Delete", android.R.drawable.ic_delete),
-//                new MyListData("Dialer", android.R.drawable.ic_dialog_dialer),
-//                new MyListData("Alert", android.R.drawable.ic_dialog_alert),
-//                new MyListData("Map", android.R.drawable.ic_dialog_map),
-//        };
+//        
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         MyListAdapter adapter = new MyListAdapter(myListData);
