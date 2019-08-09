@@ -21,9 +21,11 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
-public class HomeActivity extends AppCompatActivity implements MyRecycler{
-    public ArrayList<SatData> mSatData ;
-
+public class HomeActivity extends AppCompatActivity
+{
+    String key = "";
+    String value = "";
+    public MyListData[] myListData;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,10 +38,8 @@ public class HomeActivity extends AppCompatActivity implements MyRecycler{
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
         if(userJson != null)
         {
-
             try
             {
                 JSONArray mJSONArray = new JSONArray(userJson);
@@ -47,28 +47,49 @@ public class HomeActivity extends AppCompatActivity implements MyRecycler{
                 {
                     JSONObject mObject = mJSONArray.getJSONObject(i);
                     System.out.println("----------------");
-                   // System.out.println(mObject.get("mission_name"));
-                    //Log.d("DATA", mObject.toString());
-                    SatData mSatdata = new SatData();
-                    mSatdata.setFlight_number(mObject.get("flight_number").toString());
-                    mSatdata.setMission_name(mObject.get("mission_name").toString());
-                    mSatdata.setLaunch_year(mObject.get("launch_year").toString());
-                    mSatdata.setUpcoming(mObject.get("upcoming").toString());
-                    mSatdata.display();
+                    System.out.println(mObject.get("mission_name"));
 
+                    value = mObject.get("mission_name").toString();
 
+                    MyListData myListData1 = new MyListData(value);
 
-
+                    MyListData.DataList.add(myListData1);
+                    Log.d("DATA", mObject.toString());
                 }
+                myListData = MyListData.DataList.toArray(new MyListData [MyListData.DataList.size()]);
+
+//                myListData = MyListData.DataList.toArray();
+
+                System.out.println(
+                        MyListData.DataList
+                );
             }
             catch (JSONException e)
             {
                 e.printStackTrace();
             }
         }
+//        MyListData[] myListData = new MyListData[] {
+//                new MyListData(value, android.R.drawable.ic_dialog_email),
+//                new MyListData("Info", android.R.drawable.ic_dialog_info),
+//                new MyListData("Delete", android.R.drawable.ic_delete),
+//                new MyListData("Dialer", android.R.drawable.ic_dialog_dialer),
+//                new MyListData("Alert", android.R.drawable.ic_dialog_alert),
+//                new MyListData("Map", android.R.drawable.ic_dialog_map),
+//                new MyListData("Email", android.R.drawable.ic_dialog_email),
+//                new MyListData("Info", android.R.drawable.ic_dialog_info),
+//                new MyListData("Delete", android.R.drawable.ic_delete),
+//                new MyListData("Dialer", android.R.drawable.ic_dialog_dialer),
+//                new MyListData("Alert", android.R.drawable.ic_dialog_alert),
+//                new MyListData("Map", android.R.drawable.ic_dialog_map),
+//        };
+
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        MyListAdapter adapter = new MyListAdapter(myListData);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
     }
-
-
     public String loadJSONFromAsset() throws JSONException {
         String json;
         try {
@@ -82,16 +103,11 @@ public class HomeActivity extends AppCompatActivity implements MyRecycler{
             ex.printStackTrace();
             return null;
         }
+//        System.out.println(json);
         return json;
+
+
+
+//
     }
-
-
-
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        SatData adapter = new MyListAdapter();
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(adapter);
-    }
-
-
+}

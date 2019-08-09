@@ -1,11 +1,12 @@
 package com.nikhil.c0753159_mad3125_midterm;
 
+import java.util.ArrayList;
+
 public class MyListData {
+    static ArrayList<MyListData> DataList = new ArrayList<MyListData>();
     private String description;
-    private int imgId;
-    public MyListData(String description, int imgId) {
+    public MyListData(String description) {
         this.description = description;
-        this.imgId = imgId;
     }
     public String getDescription() {
         return description;
@@ -13,10 +14,5 @@ public class MyListData {
     public void setDescription(String description) {
         this.description = description;
     }
-    public int getImgId() {
-        return imgId;
-    }
-    public void setImgId(int imgId) {
-        this.imgId = imgId;
-    }
 }
+
