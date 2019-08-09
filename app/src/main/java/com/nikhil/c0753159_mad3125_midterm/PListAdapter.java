@@ -4,10 +4,14 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.GlideBuilder;
 
 
 // RecyclerView recyclerView;
@@ -34,6 +38,13 @@ public class PListAdapter extends RecyclerView.Adapter<PListAdapter.ViewHolder>{
         final PListData pListData = listdata[position];
         holder.textView.setText(listdata[position].getDescription());
         holder.textView1.setText(listdata[position].getLaunchYear());
+        /*String photoUrl = HomeActivity.PListData.get(position).getWebLinks().getMission_patch_small();
+        Glide.with(ViewHolder.FlightImage)
+                .load(photoUrl)
+                .centerCrop()
+                .fallback(R.drawable.border)
+                .into(ViewHolder.imagepath);
+                */
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,13 +69,15 @@ public class PListAdapter extends RecyclerView.Adapter<PListAdapter.ViewHolder>{
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView textView;
-        public TextView textView1;
-        public LinearLayout linearLayout;
+         TextView textView;
+         TextView textView1;
+         LinearLayout linearLayout;
+        ImageView  FlightImage;
         public ViewHolder(View itemView) {
             super(itemView);
             this.textView = (TextView) itemView.findViewById(R.id.MissionName);
             this.textView1 = (TextView) itemView.findViewById(R.id.year);
+            FlightImage = itemView.findViewById(R.id.FlightImage);
             linearLayout = (LinearLayout) itemView.findViewById(R.id.LinearLayout);
         }
     }
