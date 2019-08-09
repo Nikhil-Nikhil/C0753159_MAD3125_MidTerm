@@ -2,6 +2,8 @@ package com.nikhil.c0753159_mad3125_midterm;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -18,53 +20,29 @@ import java.io.InputStreamReader;
 public class HomeActivity extends AppCompatActivity {
 
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_home);
+        MyListData[] myListData = new MyListData[]{
+                new MyListData("Email", android.R.drawable.ic_dialog_email),
+                new MyListData("Info", android.R.drawable.ic_dialog_info),
+                new MyListData("Delete", android.R.drawable.ic_delete),
+                new MyListData("Dialer", android.R.drawable.ic_dialog_dialer),
+                new MyListData("Alert", android.R.drawable.ic_dialog_alert),
+                new MyListData("Map", android.R.drawable.ic_dialog_map),
+                new MyListData("Email", android.R.drawable.ic_dialog_email),
+                new MyListData("Info", android.R.drawable.ic_dialog_info),
+                new MyListData("Delete", android.R.drawable.ic_delete),
+                new MyListData("Dialer", android.R.drawable.ic_dialog_dialer),
+                new MyListData("Alert", android.R.drawable.ic_dialog_alert),
+                new MyListData("Map", android.R.drawable.ic_dialog_map),
+        };
 
-        private static final String TAG = "HomeActivity";
-        String jsonString;
-        @Override
-        protected void onCreate(@Nullable Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_home);
-
-            try {
-                jsonString = readFile("json_file");
-                Log.e(TAG, "onCreate: "+jsonString);
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-
-            try {
-                JSONArray jsonArray = new JSONArray(jsonString);
-                for (int i =0 ; i<jsonArray.length() ; i++){
-                    JSONObject object = jsonArray.getJSONObject(i);
-                    String flight = object.getString("flight_number");
-                    Log.e(TAG, "onCreate: "+flight );
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-          //  init();
-        }
-
-    private void init() {
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        MyListAdapter adapter = new MyListAdapter(myListData);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
     }
-
-
-    public String readFile(String fileName) throws IOException
-        {
-            BufferedReader reader = null;
-            reader = new BufferedReader(new InputStreamReader(getAssets().open(fileName), "UTF-8"));
-
-            String content = "";
-            String line;
-            while ((line = reader.readLine()) != null)
-            {
-                content = content + line;
-            }
-
-            return content;
-
-        }
-    }
-
+}
