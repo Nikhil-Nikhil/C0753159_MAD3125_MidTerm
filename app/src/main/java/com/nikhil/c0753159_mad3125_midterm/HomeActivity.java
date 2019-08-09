@@ -53,8 +53,10 @@ public class HomeActivity extends AppCompatActivity
                     key = mObject.get("launch_year").toString();
 
                     MyListData myListData1 = new MyListData(value);
+                    MyListData myListData2 = new MyListData(key);
 
                     MyListData.DataList.add(myListData1);
+                    MyListData.DataList.add(myListData2);
                     Log.d("DATA", mObject.toString());
                 }
                 myListData = MyListData.DataList.toArray(new MyListData [MyListData.DataList.size()]);
@@ -70,7 +72,7 @@ public class HomeActivity extends AppCompatActivity
                 e.printStackTrace();
             }
         }
-//        
+//
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         MyListAdapter adapter = new MyListAdapter(myListData);
@@ -98,4 +100,5 @@ public class HomeActivity extends AppCompatActivity
 
 //
     }
+
 }
