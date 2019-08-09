@@ -85,4 +85,19 @@ public class SatData {
     public Weblinks getLinks() {
         return links;
     }
+
+    public void setLinks(Weblinks links) {
+        this.links = links;
+    }
+
+    public String getDetails() {
+        return details;
+    }
+
+    public void setDetails(String details) {
+        this.details = details;
+    }
+    public void display(){
+        System.out.println("FlightNumber"+this.getFlight_number()+"\nMissionName"+this.mission_name+"\n Launch Year"+this.launch_year);
+    }
 }
