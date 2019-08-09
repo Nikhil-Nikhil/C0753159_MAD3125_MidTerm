@@ -45,8 +45,8 @@ public class HomeActivity extends AppCompatActivity {
                 for (int i = 0; i < mJSONArray.length(); i++)
                 {
                     JSONObject mObject = mJSONArray.getJSONObject(i);
+                    JSONObject mObject1;
                     JSONObject mObject2;
-                    JSONObject mObject3;
 
                     System.out.println("----------------");
                     System.out.println(mObject.get("mission_name"));
@@ -55,14 +55,9 @@ public class HomeActivity extends AppCompatActivity {
                     flightNumber = mObject.get("flight_number").toString();
                     launchYear = mObject.get("launch_year").toString();
 
-                    mObject2 = mObject.getJSONObject("rocket");
-                    rocketId = mObject2.getString("rocket_id");
-                    rocketType = mObject2.getString("rocket_type");
-                    System.out.println("==========="+rocketId);
-
-                    mObject3 = mObject.getJSONObject("links");
-                    imgPath = mObject3.getString("mission_patch");
-                    imgPathSmall = mObject3.getString("mission_patch_small");
+                    mObject2 = mObject.getJSONObject("links");
+                    imgPath = mObject2.getString("mission_patch");
+                    imgPathSmall = mObject2.getString("mission_patch_small");
 
                     PListData pListData1 = new PListData(missionName,flightNumber,launchYear,rocketId,rocketType,imgPath,imgPathSmall);
 

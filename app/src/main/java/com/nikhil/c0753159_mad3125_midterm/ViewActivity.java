@@ -18,6 +18,9 @@ public class ViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view);
+        pListData = (PListData) getIntent().getSerializableExtra("sendData");
+        init();
+        setData();
         logout = findViewById(R.id.logout);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -28,26 +31,19 @@ public class ViewActivity extends AppCompatActivity {
                 Toast.makeText(ViewActivity.this, "Successfully Logout", Toast.LENGTH_SHORT).show();
             }
         });
+
+
+    }
+
+    private void setData() {
+        txtMissionName.setText("Mission Name: " + pListData.getMissionName());
+
+        txtLaunchYear.setText("Launch Year: " + pListData.getLaunchYear());
+    }
+
+    private void init() {
+        txtMissionName = (TextView) findViewById(R.id.MissionName);
+
+        txtLaunchYear = (TextView) findViewById(R.id.year);
     }
 }
-        //pListData = (PListData) getIntent().getSerializableExtra("sendData");
-        //init();
-       // setData();
-
-   /* public void init() {
-        txtMissionName = (TextView) findViewById(R.id.txtMissionName);
-        txtFlightNumber = (TextView) findViewById(R.id.txtFlightNumber);
-        txtLaunchYear = (TextView) findViewById(R.id.txtLaunchYear);
-        txtRocketId = (TextView) findViewById(R.id.txtRocketId);
-        txtRocketType = (TextView) findViewById(R.id.txtRocketType);
-    }*/
-    /*public void setData() {
-        txtMissionName.setText("Mission Name: "+pListData.getMissionName());
-        txtFlightNumber.setText("Flight Number: "+pListData.getFlightNumber());
-        txtLaunchYear.setText("Launch Year: "+pListData.getLaunchYear());
-        txtRocketId.setText("Rocket Id: "+pListData.getRocketId());
-        txtRocketType.setText("Rocket Type: "+pListData.getRocketType());
-    }
-
-
-    }*/

@@ -4,18 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="10sp"
     tools:context=".ViewActivity">
+
 
 
 
     <Button
         android:id="@+id/logout"
-        android:layout_width="match_parent"
+        android:layout_width="289dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginLeft="100dp"
         android:layout_marginRight="100dp"
-        android:text="logout"
-        android:layout_gravity="center"/>
+        android:text="logout" />
+    <TextView
+        android:id="@+id/MissionName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MissionName"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
+        android:textSize="18dp"/>
+    <TextView
+        android:id="@+id/year"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Year"
+        android:textStyle="bold"
+        android:textSize="18dp"/>
 
 
 

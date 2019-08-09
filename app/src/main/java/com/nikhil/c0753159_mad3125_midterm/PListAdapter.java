@@ -33,6 +33,7 @@ public class PListAdapter extends RecyclerView.Adapter<PListAdapter.ViewHolder>{
     public void onBindViewHolder(ViewHolder holder, int position) {
         final PListData pListData = listdata[position];
         holder.textView.setText(listdata[position].getDescription());
+        holder.textView1.setText(listdata[position].getLaunchYear());
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
