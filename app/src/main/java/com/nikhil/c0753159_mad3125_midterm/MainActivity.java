@@ -11,7 +11,10 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
+    ArrayList<UserData> arrayList = new ArrayList<>();
 
     EditText userEmail,userPassword;
     Button btnLogin;
@@ -26,6 +29,9 @@ public class MainActivity extends AppCompatActivity {
         //startActivity(new Intent(packegeContext:splashScreen.this,MainActivity.class));
         //  },delayMilles(3000);
 
+        arrayList.add(new UserData("nikhil@gmail.com","1234"));
+        arrayList.add(new UserData("kishore@gmail.com","1234"));
+        arrayList.add(new UserData("tarlochan@gmail.com","1234"));
 
 
 
@@ -52,17 +58,18 @@ public class MainActivity extends AppCompatActivity {
         rememberMe =(CheckBox)findViewById(R.id.rememberMe);
 
     }
+
     private void login(){
         String email = userEmail.getText().toString();
         String password = userPassword.getText().toString();
 
         // for error.....
-//        if (email.isEmpty() || email.trim().length() == 0 ) {
-//
-//            userEmail.setError("Enter Email ID");
-//        }
+       if (email.isEmpty() || email.trim().length() == 0 ) {
 
-        if (email.equals("Admin") && password.equals("admin")) {
+         userEmail.setError("Enter Email ID");
+      }
+
+        if (email.equals("Nikhil@gmail.com") && password.equals("1234")) {
             SharedPreferences.Editor myEditor = msharedPreferences.edit();
 
             if(rememberMe.isChecked()) {
@@ -95,6 +102,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-}
+
+
+    }
+
 
 
