@@ -1,28 +1,19 @@
 package com.nikhil.c0753159_mad3125_midterm;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.ImageView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
     String rocketId = "";
@@ -32,7 +23,7 @@ public class HomeActivity extends AppCompatActivity {
     String rocketType;
     String imgPathSmall;
     String imgPath;
-    public MyListData[] myListData;
+    public PListData[] pListData;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,18 +64,18 @@ public class HomeActivity extends AppCompatActivity {
                     imgPath = mObject3.getString("mission_patch");
                     imgPathSmall = mObject3.getString("mission_patch_small");
 
-                    MyListData myListData1 = new MyListData(missionName,flightNumber,launchYear,rocketId,rocketType,imgPath,imgPathSmall);
+                    PListData pListData1 = new PListData(missionName,flightNumber,launchYear,rocketId,rocketType,imgPath,imgPathSmall);
 
-                    MyListData.DataList.add(myListData1);
+                    PListData.DataList.add(pListData1);
                     Log.d("DATA", mObject.toString());
                 }
                 //System.out.println(rocketId);
-                myListData = MyListData.DataList.toArray(new MyListData [MyListData.DataList.size()]);
+                pListData = PListData.DataList.toArray(new PListData[PListData.DataList.size()]);
 
-//                myListData = MyListData.DataList.toArray();
+//                pListData = PListData.DataList.toArray();
 
                 System.out.println(
-                        MyListData.DataList
+                        PListData.DataList
                 );
             }
             catch (JSONException e)
@@ -95,7 +86,7 @@ public class HomeActivity extends AppCompatActivity {
 //
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        MyListAdapter adapter = new MyListAdapter(myListData);
+        PListAdapter adapter = new PListAdapter(pListData);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
@@ -103,7 +94,7 @@ public class HomeActivity extends AppCompatActivity {
     public String loadJSONFromAsset() throws JSONException {
         String json;
         try {
-            InputStream is = getAssets().open("Data.json");
+            InputStream is = getAssets().open("jsonfile.json");
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);
@@ -113,7 +104,7 @@ public class HomeActivity extends AppCompatActivity {
             ex.printStackTrace();
             return null;
         }
-//        System.out.println(json);
+        System.out.println(json);
         return json;
 
 

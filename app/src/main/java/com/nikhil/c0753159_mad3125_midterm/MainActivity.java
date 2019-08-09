@@ -19,11 +19,6 @@ public class MainActivity extends AppCompatActivity {
     Button btnLogin;
     SharedPreferences msharedPreferences;
     CheckBox rememberMe;
-    UserData u1 = new UserData("nikhil@gmail.com","1234");
-    UserData u2 = new UserData("kishore@gmail.com","1234");
-    UserData u3 = new UserData("nikhil1@gmail.com","1234");
-    UserData[] login = {u1,u2,u3};
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,17 +54,15 @@ public class MainActivity extends AppCompatActivity {
         rememberMe =(CheckBox)findViewById(R.id.rememberMe);
 
     }
-
     private void login(){
         String email = userEmail.getText().toString();
         String password = userPassword.getText().toString();
 
         // for error.....
-       if (email.isEmpty() || email.trim().length() == 0 || password.isEmpty()||password.trim().length()==0 ) {
-
-         userEmail.setError("Enter Email ID");
-         userPassword.setError("EnterPassword");
-      }
+//        if (email.isEmpty() || email.trim().length() == 0 ) {
+//
+//            userEmail.setError("Enter Email ID");
+//        }
 
         if (email.equals("Nikhil@gmail.com") && password.equals("1234")) {
             SharedPreferences.Editor myEditor = msharedPreferences.edit();
@@ -88,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
+            //Toast.makeText(getApplicationContext(), "Logged In", Toast.LENGTH_SHORT).show();
             Intent i = new Intent(getApplicationContext(),HomeActivity.class);
             i.putExtra("email",email);
 
@@ -104,9 +97,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-
-
-    }
-
+}
 
 

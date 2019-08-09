@@ -3,8 +3,8 @@ package com.nikhil.c0753159_mad3125_midterm;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class MyListData implements Serializable {
-    static ArrayList<MyListData> DataList = new ArrayList<MyListData>();
+public class PListData implements Serializable {
+    static ArrayList<PListData> DataList = new ArrayList<PListData>();
     private String missionName;
     private String flightNumber;
     private String launchYear;
@@ -13,7 +13,7 @@ public class MyListData implements Serializable {
     private String imagePath;
     private String imagePathSmall;
 
-    public MyListData(String missionName, String flightNumber, String launchYear, String rocketId, String rocketType, String imagePath, String imagePathSmall) {
+    public PListData(String missionName, String flightNumber, String launchYear, String rocketId, String rocketType, String imagePath, String imagePathSmall) {
         this.missionName = missionName;
         this.flightNumber = flightNumber;
         this.launchYear = launchYear;
